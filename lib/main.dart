@@ -14,6 +14,7 @@ void main() async {
     DeviceOrientation.landscapeLeft,
     DeviceOrientation.landscapeRight,
   ]);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
   await SpriteSheets.load();
   await FlameAudio.audioCache.loadAll(
     [
@@ -23,12 +24,15 @@ void main() async {
       Globals.powerUpAppearsSFX,
       Globals.breakBlockSFX,
     ]
-  );
+  ); 
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: GameWidget(
-        game: _superMarioBrosGame,
+      home: GestureDetector(
+        onTap: () => SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive),
+        child: GameWidget(
+          game: _superMarioBrosGame,
+        ),
       ),
     )
   );
